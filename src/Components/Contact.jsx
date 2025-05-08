@@ -1,9 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Container, Typography, TextField, Button, AppBar, Toolbar } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  AppBar,
+  Toolbar,
+  Grid,
+  IconButton,
+  Divider,
+  Button,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
+import EmailIcon from "@mui/icons-material/Email";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import DescriptionIcon from "@mui/icons-material/Description";
 
 // Motion-enhanced MUI components
 const MotionTypography = motion(Typography);
@@ -14,68 +27,30 @@ const Navbar = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "blue" }}>
       <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, fontWeight: "bold" }}
-        >
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: "bold" }}>
           Mitesh's Portfolio
         </Typography>
-
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
-        <Button
-            component={Link}
-            to="/home"
-            color="inherit"
-            sx={{
-              textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": {
-                textDecoration: "underline",
-                transition : "all 0.3s ease",
-                color: "blue",
-              },
-            }}
-          >
-            Home
-          </Button>
-          <Button
-            component={Link}
-            to="/about"
-            color="inherit"
-            sx={{
-              textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": {
-                textDecoration: "underline",
-                transition : "all 0.3s ease",
-                color: "blue",
-              },
-            }}
-          >
-            About
-          </Button>
-          <Button
-            component={Link}
-            to="/contact"
-            color="inherit"
-            sx={{
-              fontWeight: "bold",
-              textTransform: "none",
-              "&:hover": {
-                textDecoration: "underline",
-                transition : "all 0.3s ease",
+          {["/home", "/about", "/contact"].map((path, idx) => (
+            <Button
+              key={idx}
+              component={Link}
+              to={path}
+              color="inherit"
+              sx={{
+                textTransform: "none",
+                fontWeight: "bold",
                 "&:hover": {
                   textDecoration: "underline",
+                  transition: "all 0.3s ease",
+                  color: "blue",
                 },
-                color: "blue",
-              },
-            }}
-          >
-            Contact
-          </Button>
+              }}
+            >
+              {path.replace("/", "").charAt(0).toUpperCase() + path.slice(2)}
+            </Button>
+          ))}
         </Box>
-
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton edge="end" color="inherit">
             <MenuIcon />
@@ -90,10 +65,7 @@ const Navbar = () => {
 const Contact = () => {
   return (
     <>
-      {/* Navbar with AppBar */}
       <Navbar />
-
-      {/* Main Content */}
       <MotionBox
         sx={{ minHeight: "calc(100vh - 64px)", backgroundColor: "#f9f9f9", py: 8 }}
         initial={{ opacity: 0 }}
@@ -108,55 +80,77 @@ const Contact = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            Contact Me
+            Get in Touch
           </MotionTypography>
 
-          <MotionBox
+          <Box
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
               backgroundColor: "#fff",
-              padding: 4,
+              p: 4,
               borderRadius: 2,
-              boxShadow: 3,
+              boxShadow: 2,
             }}
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <TextField
-              label="Your Name"
-              variant="outlined"
-              fullWidth
-              required
-              sx={{ mb: 2 }}
-            />
-            <TextField
-              label="Your Email"
-              variant="outlined"
-              type="email"
-              fullWidth
-              required
-              sx={{ mb: 2 }}
-            />
-            <TextField
-              label="Message"
-              variant="outlined"
-              fullWidth
-              multiline
-              rows={4}
-              required
-              sx={{ mb: 2 }}
-            />
+            <Typography variant="h6" fontWeight="bold" gutterBottom>
+              Contact Details
+            </Typography>
+            <Divider sx={{ mb: 2 }} />
+            <Box display="flex" alignItems="center" mb={2}>
+              <EmailIcon sx={{ mr: 1, color: "blue" }} />
+              <Typography
+                variant="body1"
+                component="a"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=thakormitesh2702@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: "inherit",
+                  textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
+                }}
+              >
+                thakormitesh2702@gmail.com
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mb={2}>
+              <PhoneIcon sx={{ mr: 1, color: "blue" }} />
+              <Typography
+                variant="body1"
+                component="a"
+                href="tel:+919313443520"
+                sx={{
+                  color: "inherit",
+                  textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
+                }}
+              >
+                +91 93134 43520
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center" mb={3}>
+              <LocationOnIcon sx={{ mr: 1, color: "blue" }} />
+              <Typography variant="body1">Navsari, Gujarat, India</Typography>
+            </Box>
+
             <Button
-              variant="contained"
-              color="primary"
-              sx={{ alignSelf: "center" }}
+              variant="outlined"
+              startIcon={<DescriptionIcon />}
+              href="https://drive.google.com/file/d/1EIhqL0T-JUFPPwzrmsX03COJByo4FAWu/view?usp=drive_link" // <-- Replace this with your actual resume link
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                mt: 2,
+                borderColor: "blue",
+                color: "blue",
+                "&:hover": {
+                  backgroundColor: "blue",
+                  color: "white",
+                },
+              }}
             >
-              Send Message
+              Explore My Resume
             </Button>
-          </MotionBox>
+          </Box>
         </Container>
       </MotionBox>
     </>
