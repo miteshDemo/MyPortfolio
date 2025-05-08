@@ -6,13 +6,10 @@ import {
   Typography,
   AppBar,
   Toolbar,
-  Grid,
-  IconButton,
   Divider,
   Button,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import MenuIcon from "@mui/icons-material/Menu";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -30,7 +27,7 @@ const Navbar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: "bold" }}>
           Mitesh's Portfolio
         </Typography>
-        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+        <Box sx={{ display: "flex", gap: 2 }}>
           {["/home", "/about", "/contact"].map((path, idx) => (
             <Button
               key={idx}
@@ -43,18 +40,13 @@ const Navbar = () => {
                 "&:hover": {
                   textDecoration: "underline",
                   transition: "all 0.3s ease",
-                  color: "blue",
+                  color: "white",
                 },
               }}
             >
               {path.replace("/", "").charAt(0).toUpperCase() + path.slice(2)}
             </Button>
           ))}
-        </Box>
-        <Box sx={{ display: { xs: "flex", md: "none" } }}>
-          <IconButton edge="end" color="inherit">
-            <MenuIcon />
-          </IconButton>
         </Box>
       </Toolbar>
     </AppBar>
@@ -95,6 +87,7 @@ const Contact = () => {
               Contact Details
             </Typography>
             <Divider sx={{ mb: 2 }} />
+
             <Box display="flex" alignItems="center" mb={2}>
               <EmailIcon sx={{ mr: 1, color: "blue" }} />
               <Typography
@@ -112,6 +105,7 @@ const Contact = () => {
                 thakormitesh2702@gmail.com
               </Typography>
             </Box>
+
             <Box display="flex" alignItems="center" mb={2}>
               <PhoneIcon sx={{ mr: 1, color: "blue" }} />
               <Typography
@@ -127,6 +121,7 @@ const Contact = () => {
                 +91 93134 43520
               </Typography>
             </Box>
+
             <Box display="flex" alignItems="center" mb={3}>
               <LocationOnIcon sx={{ mr: 1, color: "blue" }} />
               <Typography variant="body1">Navsari, Gujarat, India</Typography>
@@ -135,7 +130,7 @@ const Contact = () => {
             <Button
               variant="outlined"
               startIcon={<DescriptionIcon />}
-              href="https://drive.google.com/file/d/1EIhqL0T-JUFPPwzrmsX03COJByo4FAWu/view?usp=drive_link" // <-- Replace this with your actual resume link
+              href="https://drive.google.com/file/d/1EIhqL0T-JUFPPwzrmsX03COJByo4FAWu/view?usp=drive_link"
               target="_blank"
               rel="noopener noreferrer"
               sx={{
