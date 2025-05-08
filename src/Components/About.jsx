@@ -23,7 +23,7 @@ const MotionTypography = motion(Typography);
 const MotionBox = motion(Box);
 const MotionGrid = motion(Grid);
 
-// Navbar without icon, always shows NavLinks
+// Navbar without icon, always visible
 const Navbar = () => (
   <AppBar position="static" sx={{ backgroundColor: "blue" }}>
     <Toolbar sx={{ flexWrap: "wrap", justifyContent: "space-between" }}>
@@ -31,11 +31,11 @@ const Navbar = () => (
         Mitesh's Portfolio
       </Typography>
       <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-        {["Home", "about", "contact"].map((route) => (
+        {["Home", "About", "Contact"].map((route) => (
           <Button
             key={route}
             component={Link}
-            to={`/${route}`}
+            to={`/${route.toLowerCase()}`}
             color="inherit"
             sx={{
               fontWeight: "bold",
@@ -44,7 +44,7 @@ const Navbar = () => (
               "&:hover": { textDecoration: "underline" },
             }}
           >
-            {route.charAt(0).toUpperCase() + route.slice(1)}
+            {route}
           </Button>
         ))}
       </Box>
@@ -101,7 +101,11 @@ const About = () => {
 
             <Divider sx={{ my: 4 }} />
 
-            <MotionBox initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.3, duration: 0.8 }}>
+            <MotionBox
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
               <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
                 GitHub
               </Typography>

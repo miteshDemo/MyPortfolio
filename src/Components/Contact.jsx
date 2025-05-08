@@ -6,6 +6,7 @@ import {
   Typography,
   AppBar,
   Toolbar,
+  Grid,
   Divider,
   Button,
 } from "@mui/material";
@@ -19,7 +20,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 const MotionTypography = motion(Typography);
 const MotionBox = motion(Box);
 
-// Navbar component
+// Updated Navbar component
 const Navbar = () => {
   return (
     <AppBar position="static" sx={{ backgroundColor: "blue" }}>
@@ -27,12 +28,14 @@ const Navbar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: "bold" }}>
           Mitesh's Portfolio
         </Typography>
+
+        {/* Always show links on all screen sizes */}
         <Box sx={{ display: "flex", gap: 2 }}>
-          {["/home", "/about", "/contact"].map((path, idx) => (
+          {["home", "about", "contact"].map((route) => (
             <Button
-              key={idx}
+              key={route}
               component={Link}
-              to={path}
+              to={`/${route}`}
               color="inherit"
               sx={{
                 textTransform: "none",
@@ -44,7 +47,7 @@ const Navbar = () => {
                 },
               }}
             >
-              {path.replace("/", "").charAt(0).toUpperCase() + path.slice(2)}
+              {route.charAt(0).toUpperCase() + route.slice(1)}
             </Button>
           ))}
         </Box>

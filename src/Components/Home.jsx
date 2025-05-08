@@ -11,11 +11,9 @@ import {
   Button,
   AppBar,
   Toolbar,
-  IconButton,
   Paper,
   Divider,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { motion } from "framer-motion";
 
 // Motion-enhanced components
@@ -43,12 +41,11 @@ const projects = [
 
 const Navbar = () => (
   <AppBar position="static" sx={{ backgroundColor: "blue" }}>
-    <Toolbar>
-      <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: "bold" }}>
+    <Toolbar sx={{ flexWrap: "wrap", justifyContent: "space-between" }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
         Mitesh's Portfolio
       </Typography>
-
-      <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+      <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
         {["about", "contact"].map((route) => (
           <Button
             key={route}
@@ -65,12 +62,6 @@ const Navbar = () => (
             {route.charAt(0).toUpperCase() + route.slice(1)}
           </Button>
         ))}
-      </Box>
-
-      <Box sx={{ display: { xs: "flex", md: "none" } }}>
-        <IconButton edge="end" color="inherit">
-          <MenuIcon />
-        </IconButton>
       </Box>
     </Toolbar>
   </AppBar>
