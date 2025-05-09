@@ -15,15 +15,14 @@ import {
   TableBody,
   TableCell,
   TableRow,
+  useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
 
-// Motion-enhanced MUI components
 const MotionTypography = motion(Typography);
 const MotionBox = motion(Box);
 const MotionGrid = motion(Grid);
 
-// Navbar without icon, always visible
 const Navbar = () => (
   <AppBar position="static" sx={{ backgroundColor: "blue" }}>
     <Toolbar sx={{ flexWrap: "wrap", justifyContent: "space-between" }}>
@@ -53,18 +52,33 @@ const Navbar = () => (
 );
 
 const About = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+
   return (
     <>
       <Navbar />
 
       <MotionBox
-        sx={{ minHeight: "calc(100vh - 64px)", backgroundColor: "#f9f9f9", py: 8 }}
+        sx={{
+          minHeight: "calc(100vh - 64px)",
+          backgroundColor: isDarkMode ? "#121212" : "#f9f9f9",
+          py: 8,
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Container maxWidth="md">
-          <Paper elevation={3} sx={{ p: 4, borderRadius: 4 }}>
+          <Paper
+            elevation={3}
+            sx={{
+              p: 4,
+              borderRadius: 4,
+              backgroundColor: isDarkMode ? "#1e1e1e" : "#fff",
+              color: isDarkMode ? "white" : "inherit",
+            }}
+          >
             <Grid container spacing={4} alignItems="center">
               <Grid item xs={12} sm={4}>
                 <Avatar
@@ -111,7 +125,11 @@ const About = () => {
               </Typography>
               <Typography variant="body1" sx={{ mb: 3 }}>
                 Link:{" "}
-                <a href="https://github.com/miteshDemo?tab=repositories" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://github.com/miteshDemo?tab=repositories"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   github.com/miteshDemo
                 </a>
               </Typography>
@@ -122,6 +140,10 @@ const About = () => {
               <Table sx={{ mb: 4 }}>
                 <TableBody>
                   <TableRow>
+                    <TableCell>Operating System</TableCell>
+                    <TableCell>Windows</TableCell>
+                  </TableRow>
+                  <TableRow>
                     <TableCell>Frontend</TableCell>
                     <TableCell>React, HTML5, CSS3, Tailwind, MUI</TableCell>
                   </TableRow>
@@ -131,11 +153,11 @@ const About = () => {
                   </TableRow>
                   <TableRow>
                     <TableCell>Database</TableCell>
-                    <TableCell>MongoDB</TableCell>
+                    <TableCell>MongoDB, SQL</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Other Tools</TableCell>
-                    <TableCell>Git, REST APIs, GitHub</TableCell>
+                    <TableCell>Git, REST APIs, GitHub, VS Tool, VS Code</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

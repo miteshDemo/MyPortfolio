@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -67,33 +67,56 @@ const Navbar = () => (
   </AppBar>
 );
 
-const Home = () => {
+const Home = ({ mode }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Navbar />
 
       <MotionBox
-        sx={{ minHeight: "calc(100vh - 64px)", backgroundColor: "#f0f0f0", py: 8 }}
+        sx={{
+          minHeight: "calc(100vh - 64px)",
+          py: 8,
+          bgcolor: mode === "dark" ? "grey.900" : "#f0f0f0",
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
         <Container maxWidth="lg">
-          <Paper elevation={3} sx={{ p: 4, borderRadius: 4 }}>
-            <MotionTypography
-              variant="h4"
-              sx={{
-                fontWeight: "bold",
-                color: "blue",
-                textAlign: "center",
-                mb: 4,
-              }}
-              initial={{ y: -30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-            >
-              My Projects
-            </MotionTypography>
+          <Paper
+            elevation={3}
+            sx={{
+              p: 4,
+              borderRadius: 4,
+              bgcolor: mode === "dark" ? "grey.900" : "background.paper",
+              color: "inherit",
+            }}
+          >
+            {/* Title and Back Button */}
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
+              <MotionTypography
+                variant="h4"
+                sx={{
+                  fontWeight: "bold",
+                  color: "blue",
+                }}
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                My Projects
+              </MotionTypography>
+
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => navigate("/")}
+              >
+                Back
+              </Button>
+            </Box>
 
             <Divider sx={{ mb: 4 }} />
 
@@ -117,6 +140,7 @@ const Home = () => {
                       justifyContent: "space-between",
                       boxShadow: 3,
                       borderRadius: 3,
+                      bgcolor: mode === "dark" ? "grey.700" : "background.paper",
                     }}
                     whileHover={{ scale: 1.03 }}
                   >
@@ -135,7 +159,7 @@ const Home = () => {
                         Tech Stack: {project.techStack}
                       </Typography>
                     </CardContent>
-                    
+
                     <CardActions>
                       <Button
                         size="small"

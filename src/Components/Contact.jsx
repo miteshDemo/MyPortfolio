@@ -57,12 +57,17 @@ const Navbar = () => {
 };
 
 // Contact Page Component
-const Contact = () => {
+const Contact = ({ mode }) => {
   return (
     <>
       <Navbar />
       <MotionBox
-        sx={{ minHeight: "calc(100vh - 64px)", backgroundColor: "#f9f9f9", py: 8 }}
+        sx={{
+          minHeight: "calc(100vh - 64px)",
+          backgroundColor: mode === "dark" ? "#121212" : "#f9f9f9", // Dark mode background
+          color: mode === "dark" ? "#fff" : "#000", // Text color for light/dark mode
+          py: 8,
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -70,7 +75,12 @@ const Contact = () => {
         <Container maxWidth="sm">
           <MotionTypography
             variant="h3"
-            sx={{ fontWeight: "bold", textAlign: "center", color: "blue", mb: 4 }}
+            sx={{
+              fontWeight: "bold",
+              textAlign: "center",
+              color: mode === "dark" ? "blue" : "blue", // Color change for dark mode
+              mb: 4,
+            }}
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -80,7 +90,7 @@ const Contact = () => {
 
           <Box
             sx={{
-              backgroundColor: "#fff",
+              backgroundColor: mode === "dark" ? "#333" : "#fff", 
               p: 4,
               borderRadius: 2,
               boxShadow: 2,
@@ -92,7 +102,7 @@ const Contact = () => {
             <Divider sx={{ mb: 2 }} />
 
             <Box display="flex" alignItems="center" mb={2}>
-              <EmailIcon sx={{ mr: 1, color: "blue" }} />
+              <EmailIcon sx={{ mr: 1, color: mode === "dark" ? "#fff" : "blue" }} />
               <Typography
                 variant="body1"
                 component="a"
@@ -100,7 +110,7 @@ const Contact = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
-                  color: "inherit",
+                  color: mode === "dark" ? "#fff" : "black",
                   textDecoration: "none",
                   "&:hover": { textDecoration: "underline" },
                 }}
@@ -110,13 +120,13 @@ const Contact = () => {
             </Box>
 
             <Box display="flex" alignItems="center" mb={2}>
-              <PhoneIcon sx={{ mr: 1, color: "blue" }} />
+              <PhoneIcon sx={{ mr: 1, color: mode === "dark" ? "#fff" : "blue" }} />
               <Typography
                 variant="body1"
                 component="a"
                 href="tel:+919313443520"
                 sx={{
-                  color: "inherit",
+                  color: mode === "dark" ? "#fff" : "black",
                   textDecoration: "none",
                   "&:hover": { textDecoration: "underline" },
                 }}
@@ -126,8 +136,10 @@ const Contact = () => {
             </Box>
 
             <Box display="flex" alignItems="center" mb={3}>
-              <LocationOnIcon sx={{ mr: 1, color: "blue" }} />
-              <Typography variant="body1">Navsari, Gujarat, India</Typography>
+              <LocationOnIcon sx={{ mr: 1, color: mode === "dark" ? "#fff" : "blue" }} />
+              <Typography variant="body1" sx={{ color: mode === "dark" ? "#fff" : "black" }}>
+                Navsari, Gujarat, India
+              </Typography>
             </Box>
 
             <Button

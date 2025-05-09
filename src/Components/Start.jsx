@@ -9,6 +9,7 @@ import {
   Toolbar,
   CircularProgress,
 } from "@mui/material";
+import { Brightness4, Brightness7 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -16,7 +17,7 @@ import { motion } from "framer-motion";
 const MotionTypography = motion(Typography);
 const MotionBox = motion(Box);
 
-const Start = () => {
+const Start = ({ toggleMode, mode }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ const Start = () => {
     <>
       {/* App Bar */}
       <AppBar position="static" sx={{ backgroundColor: "blue" }}>
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <MotionTypography
             variant="h6"
             sx={{ fontWeight: "bold" }}
@@ -41,6 +42,14 @@ const Start = () => {
           >
             Welcome to Mitesh's Portfolio
           </MotionTypography>
+
+          <Button
+            onClick={toggleMode}
+            startIcon={mode === "dark" ? <Brightness7 /> : <Brightness4 />}
+            sx={{ color: "white" }}
+          >
+            {mode === "dark" ? "Light" : "Dark"} Mode
+          </Button>
         </Toolbar>
       </AppBar>
 
@@ -51,7 +60,8 @@ const Start = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#f5f5f5",
+          bgcolor: "background.default",
+          color: "text.primary",
           paddingY: 8,
         }}
       >
