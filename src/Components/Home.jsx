@@ -37,6 +37,13 @@ const projects = [
     techStack: "React, MUI, Framer Motion, React Router",
     link: "https://github.com/miteshDemo/MyPortfolio",
   },
+  {
+    title: "Text Converter App",
+    description:
+      " A Plateform that you use for Text Modification (LoverCase, UpperCase, Copy Text and Many More Functionality Included, You can Explore.)",
+    techStack: "React, MUI, Tailwind",
+    link: "https://github.com/miteshDemo/Text-Converter-React ",
+  },
 ];
 
 const Navbar = () => (
