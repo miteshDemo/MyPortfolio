@@ -153,7 +153,7 @@ const About = () => {
                   </TableRow>
                   <TableRow>
                     <TableCell>Database</TableCell>
-                    <TableCell>MongoDB, SQL</TableCell>
+                    <TableCell>MongoDB</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell>Other Tools</TableCell>
@@ -177,7 +177,7 @@ const About = () => {
                   </TableRow>
                   <TableRow>
                     <TableCell>Creative</TableCell>
-                    <TableCell>Videography</TableCell>
+                    <TableCell>Videography, Editing Videos & Photos</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
